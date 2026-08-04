@@ -82,6 +82,19 @@
 
 ## 다음 액션
 
-1. 의존성 설치·타입 검증 후 PostgreSQL 연결 ([W1 체크리스트](./04-progress.md))
+1. Docker PostgreSQL 실행 후 Payload migration·taxonomy seed ([W1 체크리스트](./04-progress.md))
 2. 리뷰 12건 fixture 시드와 발행 검증 테스트 구현
 3. **W2부터 리뷰 집필 병행** — 어드민이 W1에 완성되므로 프론트 개발과 동시 진행 가능
+
+## 로컬 PostgreSQL
+
+프로젝트 전용 PostgreSQL은 기본 포트 `5432`와 겹치지 않도록 호스트 `55432`를 사용한다.
+
+```powershell
+Copy-Item .env.example .env
+pnpm db:up
+pnpm migrate
+pnpm seed
+```
+
+상태 확인은 `pnpm db:status`, 로그 확인은 `pnpm db:logs`, 종료는 `pnpm db:down`을 사용한다.

@@ -11,7 +11,11 @@
     "typecheck": "tsc --noEmit",
     "generate:types": "payload generate:types",
     "migrate": "payload migrate",
-    "seed": "tsx src/seed/index.ts"
+    "seed": "tsx src/seed/index.ts",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres",
+    "db:status": "docker compose ps postgres"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.86.0",

@@ -41,7 +41,7 @@ Next.js 15 (App Router) + Payload CMS 3.86.x + PostgreSQL
 | 영역 | 선택 |
 |---|---|
 | CMS | Payload 3.86.x (**전 패키지 버전 동일 고정**) |
-| DB | PostgreSQL (`@payloadcms/db-postgres`) |
+| DB | PostgreSQL (`@payloadcms/db-postgres`, local Docker host port `55432`) |
 | 에디터 | Lexical |
 | 스타일 | Tailwind v4 + CSS 변수 |
 | 스토리지 | Cloudflare R2 (S3 어댑터, `region: 'auto'`) |
@@ -129,7 +129,7 @@ Next.js 15 (App Router) + Payload CMS 3.86.x + PostgreSQL
 | D-09 | `wouldRepeat`로 표현 통합 | 라벨 파생·필터 |
 | D-12 | `COMPARISON`은 v1.1로 연기 | MVP 로드맵 4주 유지 |
 
-**다음 작업은 PostgreSQL 연결·fixture 시드와 Admin 게이트 검증이다.**
+**다음 작업은 Docker PostgreSQL 연결·migration·fixture 시드와 Admin 게이트 검증이다.**
 
 ---
 

@@ -42,7 +42,7 @@
 - [x] Admin / REST 라우트 골격 구성
 - [x] 카테고리·태그 taxonomy 시드 구성
 - [x] `pnpm install` 및 타입 검증 — `generate:types`, `typecheck` 통과
-- [ ] 리뷰 12건 fixture 시드와 실제 PostgreSQL 연결
+- [ ] Docker PostgreSQL 연결·migration 및 리뷰 12건 fixture 시드
 - [ ] 디자인 토큰·Tailwind 이식 및 W2 홈 퍼블리싱
 
 ---
@@ -231,6 +231,7 @@
 | 2026-08-04 | W1 차단 결정 4건 확정 — D-07 주방 흡수, D-08 태그 분리, D-09 `wouldRepeat` 통합, D-12 비교 v1.1 연기 | W1 스캐폴딩·스키마 착수 |
 | 2026-08-04 | W1 기반 파일 구성 — Next.js/Payload 설정, 11개 컬렉션·Global·검증 훅·Admin/REST 라우트 골격 | 의존성 설치·타입 검증, fixture 시드 |
 | 2026-08-04 | 의존성 설치 및 Payload 설정 오류 수정 — ESM 모드·Admin serverFunction·redirects 중복 등록 해결 | PostgreSQL 연결·fixture 시드·Admin 게이트 |
+| 2026-08-04 | 프로젝트 전용 Docker PostgreSQL 구성 — `postgres:16-alpine`, 호스트 포트 `55432`, healthcheck 통과 | Payload migration·fixture 시드 |
 | 2026-08-04 | 문서화 체계 구축 — `CLAUDE.md`, `04-progress.md`, `05-decisions.md` 신설 | W1 착수 |
 | 2026-08-04 | 스택 전환: NestJS → Payload CMS. `03-tech-spec.md` 전면 재작성. 로드맵 8주→4주 | — |
 | 2026-08-04 | 시안 rev.2 반영 — 브랜드 개편, 여행 섹션, 다크모드, 리뷰 타입 5종 다형화 | — |
