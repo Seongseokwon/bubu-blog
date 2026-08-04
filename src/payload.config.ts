@@ -14,7 +14,6 @@ import { Categories } from '@/collections/Categories'
 import { Comments } from '@/collections/Comments'
 import { Media } from '@/collections/Media'
 import { NewsletterIssues } from '@/collections/NewsletterIssues'
-import { Redirects } from '@/collections/Redirects'
 import { Reviews } from '@/collections/Reviews'
 import { Subscribers } from '@/collections/Subscribers'
 import { Tags } from '@/collections/Tags'
@@ -36,8 +35,7 @@ export default buildConfig({
     Subscribers,
     NewsletterIssues,
     AffiliateLinks,
-    AffiliateClicks,
-    Redirects
+    AffiliateClicks
   ],
   globals: [SiteSettings],
   editor: lexicalEditor(),
@@ -50,7 +48,7 @@ export default buildConfig({
   plugins: [
     seoPlugin({ collections: ['reviews'] }),
     nestedDocsPlugin({ collections: ['reviews'] }),
-    redirectsPlugin({ collections: ['redirects'] }),
+    redirectsPlugin({ collections: ['categories'] }),
     s3Storage({
       collections: { media: { prefix: 'media' } },
       bucket: process.env.R2_BUCKET ?? 'dul-ui-gijun-media',

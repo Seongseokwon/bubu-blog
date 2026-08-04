@@ -6,7 +6,7 @@ export const Comments: CollectionConfig = {
   admin: { useAsTitle: 'body', defaultColumns: ['body', 'review', 'author', 'status'] },
   access: {
     read: authenticatedOrPublished,
-    create: ({ req: { user } }) => Boolean(user) && !user.isBlocked,
+    create: ({ req: { user } }) => Boolean(user && !user.isBlocked),
     update: ({ req: { user } }) => user?.role === 'admin' || { author: { equals: user?.id } },
     delete: ({ req: { user } }) => user?.role === 'admin' || { author: { equals: user?.id } }
   },

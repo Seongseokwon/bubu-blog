@@ -79,7 +79,7 @@ Next.js 15 (App Router) + Payload CMS 3.86.x + PostgreSQL
 [□] W4 구현
 ```
 
-**W1 기반 파일은 구성 중이다.** Payload 설정·컬렉션 스키마·검증 훅의 골격이 있으며, 의존성 설치·실제 DB 연결·fixture 시드가 남아 있다.
+**W1 기반 파일은 구성 중이다.** Payload 설정·컬렉션 스키마·검증 훅의 골격이 있고 `generate:types`·`typecheck`까지 통과했다. 실제 DB 연결·fixture 시드가 남아 있다.
 
 세부 진행 상황과 다음 할 일은 → [`docs/04-progress.md`](docs/04-progress.md)
 
@@ -129,7 +129,7 @@ Next.js 15 (App Router) + Payload CMS 3.86.x + PostgreSQL
 | D-09 | `wouldRepeat`로 표현 통합 | 라벨 파생·필터 |
 | D-12 | `COMPARISON`은 v1.1로 연기 | MVP 로드맵 4주 유지 |
 
-**다음 작업은 의존성 설치·타입 검증과 PostgreSQL 연결이다.**
+**다음 작업은 PostgreSQL 연결·fixture 시드와 Admin 게이트 검증이다.**
 
 ---
 

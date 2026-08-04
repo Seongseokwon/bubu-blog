@@ -4,10 +4,11 @@ type ReviewData = Record<string, any>
 
 export const validatePublish = async ({ data, originalDoc }: { data?: ReviewData; originalDoc?: ReviewData }) => {
   const doc = { ...(originalDoc ?? {}), ...(data ?? {}) } as ReviewData
+  const nextData = data ?? {}
   if (doc._status !== 'published') return data
 
-  const errors: Array<{ field: string; message: string }> = []
-  const fail = (field: string, message: string) => errors.push({ field, message })
+  const errors: Array<{ path: string; message: string }> = []
+  const fail = (path: string, message: string) => errors.push({ path, message })
 
   if (!doc.pros?.length) fail('pros', '장점을 최소 1개 입력해주세요.')
   if (!doc.cons?.length) fail('cons', '단점을 최소 1개 입력해주세요. 단점 없는 리뷰는 발행할 수 없습니다.')
@@ -53,8 +54,8 @@ export const validatePublish = async ({ data, originalDoc }: { data?: ReviewData
 
   if (errors.length) throw new ValidationError({ errors })
 
-  if (!doc.publishedAt) data.publishedAt = new Date().toISOString()
-  if (doc.initialRating == null) data.initialRating = doc.rating
-  if (!doc.excerpt) data.excerpt = doc.conclusion
-  return data
+  if (!doc.publishedAt) nextData.publishedAt = new Date().toISOString()
+  if (doc.initialRating == null) nextData.initialRating = doc.rating
+  if (!doc.excerpt) nextData.excerpt = doc.conclusion
+  return nextData
 }
