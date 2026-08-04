@@ -72,12 +72,12 @@ export const Reviews: CollectionConfig = {
       type: 'collapsible', label: '경험 정보', fields: [
         { name: 'subjectName', type: 'text', label: '대상 이름', admin: { hidden: true } },
         { name: 'brand', type: 'text', admin: { hidden: true } },
-        { name: 'acquisitionType', type: 'select', required: true, defaultValue: 'purchase', options: acquisitionOptions },
+        { name: 'acquisitionType', type: 'select', required: true, label: '이용 경로', defaultValue: 'purchase', options: acquisitionOptions },
         { name: 'experiencedAt', type: 'date', admin: { hidden: true } },
         {
           type: 'row', fields: [
-            { name: 'experienceScale', type: 'number', required: true, defaultValue: 1, min: 1, admin: { width: '50%' } },
-            { name: 'experienceUnit', type: 'select', required: true, defaultValue: 'month', options: experienceUnitOptions, admin: { width: '50%' } }
+            { name: 'experienceScale', type: 'number', required: true, label: '기준 수치', defaultValue: 1, min: 1, admin: { width: '50%' } },
+            { name: 'experienceUnit', type: 'select', required: true, label: '단위', defaultValue: 'month', options: experienceUnitOptions, admin: { width: '50%' } }
           ]
         },
         {

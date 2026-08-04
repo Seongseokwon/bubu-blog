@@ -86,6 +86,24 @@ export function getRelationName(value: unknown) {
   return typeof name === 'string' ? name : null
 }
 
+export function getRelationSlug(value: unknown) {
+  if (typeof value !== 'object' || value === null || !('slug' in value)) return null
+
+  const slug = (value as { slug?: unknown }).slug
+  return typeof slug === 'string' ? slug : null
+}
+
+export async function getReviewNavigation(slug: string, categorySlug: string | null) {
+  const reviews = await getPublishedReviews(50, categorySlug ? { category: categorySlug } : {})
+  const currentIndex = reviews.findIndex((review) => review.slug === slug)
+
+  return {
+    next: currentIndex > 0 ? reviews[currentIndex - 1] : null,
+    previous: currentIndex >= 0 ? reviews[currentIndex + 1] ?? null : null,
+    related: reviews.filter((review) => review.slug !== slug).slice(0, 3)
+  }
+}
+
 export function getDisplayExperienceUnit(review: Pick<Review, 'type' | 'experienceUnit'>) {
   return review.type === 'stay' ? 'night' : review.experienceUnit
 }

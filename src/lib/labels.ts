@@ -16,6 +16,14 @@ export const UNIT_LABEL = {
   visit_count: '회 방문'
 } as const
 
+export const SCALE_LABEL = {
+  product: '사용 기간',
+  trip: '여행 기간',
+  stay: '숙박 기간',
+  place: '방문 인원',
+  comparison: '비교 기준'
+} as const
+
 export const TYPE_LABEL = {
   product: '',
   trip: '여행 일정',

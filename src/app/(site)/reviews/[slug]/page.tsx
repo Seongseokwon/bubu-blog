@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import type { Review } from '../../../../../payload-types'
 import Link from 'next/link'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { getDisplayExperienceUnit, getRelationName, getReviewBySlug } from '@/lib/reviews'
-import { ACQUISITION_LABEL, REPEAT_LABEL, TYPE_LABEL, UNIT_LABEL } from '@/lib/labels'
+import { getDisplayExperienceUnit, getRelationName, getRelationSlug, getReviewBySlug, getReviewNavigation } from '@/lib/reviews'
+import { ACQUISITION_LABEL, REPEAT_LABEL, SCALE_LABEL, TYPE_LABEL, UNIT_LABEL } from '@/lib/labels'
 
 type ReviewPageProps = {
   params: Promise<{ slug: string }>
@@ -34,8 +35,14 @@ export default async function ReviewPage({ params, searchParams }: ReviewPagePro
   const categoryName = getRelationName(review.category)
   const typeLabel = TYPE_LABEL[review.type]
   const repeatLabel = REPEAT_LABEL[review.type]
-  const stayDetail = review.stayDetail
+  const stayDetail = review.type === 'stay' ? review.stayDetail : undefined
   const experienceUnit = getDisplayExperienceUnit(review)
+  const categorySlug = getRelationSlug(review.category)
+  const navigation = await getReviewNavigation(review.slug, categorySlug)
+  const tags = review.tags?.filter(
+    (tag): tag is Exclude<NonNullable<Review['tags']>[number], number> =>
+      typeof tag === 'object' && tag !== null && 'slug' in tag && 'name' in tag
+  ) ?? []
 
   return (
     <main className="review-detail-page">
@@ -61,10 +68,16 @@ export default async function ReviewPage({ params, searchParams }: ReviewPagePro
 
         <dl className="review-facts">
           <div><dt>평점</dt><dd>{review.rating.toFixed(1)} / 5</dd></div>
-          <div><dt>경험</dt><dd>{review.experienceScale}{UNIT_LABEL[experienceUnit]}</dd></div>
-          <div><dt>경험 방식</dt><dd>{ACQUISITION_LABEL[review.acquisitionType]}</dd></div>
+          <div><dt>{SCALE_LABEL[review.type]}</dt><dd>{review.experienceScale}{UNIT_LABEL[experienceUnit]}</dd></div>
+          <div><dt>이용 경로</dt><dd>{ACQUISITION_LABEL[review.acquisitionType]}</dd></div>
           {stayDetail ? <div><dt>숙박</dt><dd>{stayDetail.nights}박 · {stayDetail.pricePerNight.toLocaleString('ko-KR')}원/박</dd></div> : null}
         </dl>
+
+        {tags.length ? (
+          <div className="review-tags" aria-label="리뷰 태그">
+            {tags.map((tag) => <Link href={`/reviews?tag=${encodeURIComponent(tag.slug)}`} key={tag.id}>#{tag.name}</Link>)}
+          </div>
+        ) : null}
 
         <div className="review-body">
           <RichText data={review.content} />
@@ -84,6 +97,33 @@ export default async function ReviewPage({ params, searchParams }: ReviewPagePro
         </div>
 
         {review.wouldRepeat ? <p className="repeat-note">{repeatLabel}</p> : null}
+
+        {navigation.related.length ? (
+          <section className="related-reviews" aria-labelledby="related-reviews-title">
+            <div className="section-heading">
+              <div>
+                <p className="foundation-eyebrow">READ NEXT</p>
+                <h2 id="related-reviews-title">같은 주제의 리뷰</h2>
+              </div>
+              <Link href={`/reviews${categorySlug ? `?category=${encodeURIComponent(categorySlug)}` : ''}`}>카테고리 전체 보기</Link>
+            </div>
+            <div className="review-grid">
+              {navigation.related.map((related) => (
+                <Link className="review-card" href={`/reviews/${related.slug}`} key={related.id}>
+                  <div className={`review-card-art review-art-${related.fallbackArt ?? 'hotel'}`} aria-hidden="true"><span>REVIEW</span></div>
+                  <div className="review-card-body"><h3>{related.title}</h3><p>{related.conclusion}</p></div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {(navigation.previous || navigation.next) ? (
+          <nav className="review-pagination" aria-label="리뷰 이동">
+            {navigation.previous ? <Link href={`/reviews/${navigation.previous.slug}`}><small>이전 리뷰</small><strong>{navigation.previous.title}</strong></Link> : <span />}
+            {navigation.next ? <Link href={`/reviews/${navigation.next.slug}`}><small>다음 리뷰</small><strong>{navigation.next.title}</strong></Link> : <span />}
+          </nav>
+        ) : null}
       </article>
     </main>
   )
