@@ -5,16 +5,19 @@ type ReviewData = Record<string, any>
 export const validatePublish = async ({ data, originalDoc }: { data?: ReviewData; originalDoc?: ReviewData }) => {
   const doc = { ...(originalDoc ?? {}), ...(data ?? {}) } as ReviewData
   const nextData = data ?? {}
-  if (doc._status !== 'published') return data
+
+  // The form uses a shared default unit. Normalize the stay type so its
+  // public metadata never says “months used” for a hotel review.
+  if (doc.type === 'stay' && doc.experienceUnit === 'month') nextData.experienceUnit = 'night'
+
+  if (doc._status !== 'published') return nextData
 
   const errors: Array<{ path: string; message: string }> = []
   const fail = (path: string, message: string) => errors.push({ path, message })
 
   if (!doc.pros?.length) fail('pros', '장점을 최소 1개 입력해주세요.')
   if (!doc.cons?.length) fail('cons', '단점을 최소 1개 입력해주세요. 단점 없는 리뷰는 발행할 수 없습니다.')
-  if (!doc.coverImage) fail('coverImage', '커버 이미지가 필요합니다.')
   if (!doc.acquisitionType) fail('acquisitionType', '어떻게 얻은 경험인지 밝혀주세요.')
-  if (!doc.tags?.length) fail('tags', '상황 태그를 최소 1개 선택해주세요.')
   if (!doc.experienceScale || doc.experienceScale < 1) fail('experienceScale', '경험 규모를 입력해주세요.')
 
   switch (doc.type) {

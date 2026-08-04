@@ -38,7 +38,11 @@ export const Reviews: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'type', 'category', '_status', 'publishedAt'],
     livePreview: {
-      url: ({ data }) => `${process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'}/reviews/${data.slug}?preview=true`
+      url: ({ data }) => {
+        const secret = process.env.PREVIEW_SECRET ?? process.env.PAYLOAD_SECRET
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+        return `${baseUrl}/api/preview?secret=${encodeURIComponent(secret ?? '')}&slug=${encodeURIComponent(data.slug)}`
+      }
     }
   },
   access: { read: adminsOrPublished, create: admins, update: admins, delete: admins },
@@ -57,39 +61,39 @@ export const Reviews: CollectionConfig = {
     { name: 'slug', type: 'text', required: true, unique: true, index: true, admin: { position: 'sidebar' } },
     { name: 'conclusion', type: 'textarea', required: true, maxLength: 160, label: '한 줄 결론' },
     { name: 'content', type: 'richText', required: true },
-    { name: 'excerpt', type: 'textarea', maxLength: 200 },
+    { name: 'excerpt', type: 'textarea', maxLength: 200, admin: { hidden: true } },
     { name: 'category', type: 'relationship', relationTo: 'categories', required: true, index: true },
     { name: 'tags', type: 'relationship', relationTo: 'tags', hasMany: true, index: true },
     {
       name: 'parent', type: 'relationship', relationTo: 'reviews', label: '상위 리뷰',
-      admin: { condition: (data) => ['stay', 'place'].includes(String(data?.type)) }
+      admin: { hidden: true, condition: (data) => ['stay', 'place'].includes(String(data?.type)) }
     },
     {
       type: 'collapsible', label: '경험 정보', fields: [
-        { name: 'subjectName', type: 'text', label: '대상 이름' },
-        { name: 'brand', type: 'text' },
+        { name: 'subjectName', type: 'text', label: '대상 이름', admin: { hidden: true } },
+        { name: 'brand', type: 'text', admin: { hidden: true } },
         { name: 'acquisitionType', type: 'select', required: true, defaultValue: 'purchase', options: acquisitionOptions },
-        { name: 'experiencedAt', type: 'date' },
+        { name: 'experiencedAt', type: 'date', admin: { hidden: true } },
         {
           type: 'row', fields: [
-            { name: 'experienceScale', type: 'number', required: true, min: 1, admin: { width: '50%' } },
+            { name: 'experienceScale', type: 'number', required: true, defaultValue: 1, min: 1, admin: { width: '50%' } },
             { name: 'experienceUnit', type: 'select', required: true, defaultValue: 'month', options: experienceUnitOptions, admin: { width: '50%' } }
           ]
         },
         {
           type: 'row', fields: [
-            { name: 'totalCost', type: 'number', label: '비용 (KRW)', min: 0, admin: { width: '60%' } },
-            { name: 'costNote', type: 'text', maxLength: 60, admin: { width: '40%', placeholder: '2인 기준' } }
+            { name: 'totalCost', type: 'number', label: '비용 (KRW)', min: 0, admin: { hidden: true, width: '60%' } },
+            { name: 'costNote', type: 'text', maxLength: 60, admin: { hidden: true, width: '40%', placeholder: '2인 기준' } }
           ]
         },
-        { name: 'vendor', type: 'text', label: '구매처 / 예약 플랫폼' },
+        { name: 'vendor', type: 'text', label: '구매처 / 예약 플랫폼', admin: { hidden: true } },
         { name: 'wouldRepeat', type: 'checkbox', label: '다시 할 의향 있음', defaultValue: false }
       ]
     },
     {
       type: 'row', fields: [
         { name: 'rating', type: 'number', required: true, min: 0.5, max: 5, admin: { step: 0.1, width: '50%' } },
-        { name: 'initialRating', type: 'number', min: 0.5, max: 5, admin: { step: 0.1, width: '50%', readOnly: true } }
+        { name: 'initialRating', type: 'number', min: 0.5, max: 5, admin: { hidden: true, step: 0.1, width: '50%', readOnly: true } }
       ]
     },
     {
@@ -102,7 +106,7 @@ export const Reviews: CollectionConfig = {
       fields: [{ name: 'text', type: 'text', required: true, maxLength: 80 }]
     },
     {
-      name: 'scores', type: 'array', label: '재평가 이력',
+      name: 'scores', type: 'array', label: '재평가 이력', admin: { hidden: true },
       fields: [
         { name: 'score', type: 'number', required: true, min: 0.5, max: 5, admin: { step: 0.1 } },
         { name: 'scaleAtTime', type: 'number', required: true },
@@ -170,7 +174,7 @@ export const Reviews: CollectionConfig = {
           ]
         },
         { name: 'address', type: 'text' },
-        { name: 'location', type: 'point' }
+        { name: 'location', type: 'point', admin: { hidden: true } }
       ]
     },
     {
@@ -190,15 +194,19 @@ export const Reviews: CollectionConfig = {
         }
       ]
     },
-    { name: 'coverImage', type: 'upload', relationTo: 'media', required: true },
+    {
+      name: 'coverImage', type: 'upload', relationTo: 'media',
+      admin: { hidden: true, description: 'S3 연결 후 대표 이미지를 추가할 수 있습니다.' }
+    },
     {
       name: 'fallbackArt', type: 'select', admin: { position: 'sidebar' },
       options: ['dishwasher', 'mattress', 'food', 'sofa', 'pan', 'laundry', 'suitcase', 'sapporo', 'hotel', 'onsen']
-        .map((value) => ({ label: value, value }))
+        .map((value) => ({ label: value, value })),
+      defaultValue: 'hotel'
     },
     { name: 'isFeatured', type: 'checkbox', admin: { position: 'sidebar' } },
     { name: 'publishedAt', type: 'date', admin: { position: 'sidebar' } },
-    { name: 'viewCount', type: 'number', defaultValue: 0, admin: { position: 'sidebar', readOnly: true } },
+    { name: 'viewCount', type: 'number', defaultValue: 0, admin: { hidden: true, position: 'sidebar', readOnly: true } },
     { name: 'monthlyViews', type: 'number', defaultValue: 0, admin: { hidden: true } }
   ]
 }
