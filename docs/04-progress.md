@@ -233,6 +233,7 @@
 | 2026-08-04 | 의존성 설치 및 Payload 설정 오류 수정 — ESM 모드·Admin serverFunction·redirects 중복 등록 해결 | PostgreSQL 연결·fixture 시드·Admin 게이트 |
 | 2026-08-04 | 프로젝트 전용 Docker PostgreSQL/PostGIS 구성 — `postgis/postgis:16-3.5-alpine`, 호스트 포트 `55432` | Payload dev push·fixture 시드 |
 | 2026-08-04 | `point` 필드 요구사항 확인 — 일반 Postgres에서 PostGIS 이미지로 전환, `postgis` 확장 활성화 | `pnpm dev` 스키마 push·fixture 시드 |
+| 2026-08-04 | S3 업로드 핸들러 import map 경로를 명시하고 `S3ClientUploadHandler` 생성 확인 | Admin 미디어 업로드 점검 |
 | 2026-08-04 | 문서화 체계 구축 — `CLAUDE.md`, `04-progress.md`, `05-decisions.md` 신설 | W1 착수 |
 | 2026-08-04 | 스택 전환: NestJS → Payload CMS. `03-tech-spec.md` 전면 재작성. 로드맵 8주→4주 | — |
 | 2026-08-04 | 시안 rev.2 반영 — 브랜드 개편, 여행 섹션, 다크모드, 리뷰 타입 5종 다형화 | — |

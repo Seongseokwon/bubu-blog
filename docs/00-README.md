@@ -100,5 +100,6 @@ pnpm seed
 ```
 
 개발 환경에서는 Payload의 Drizzle push가 스키마를 자동 반영하므로 먼저 `pnpm dev`를 실행한다.
+S3 업로드 핸들러 import map을 처음 생성하거나 스토리지 설정을 바꾼 뒤에는 `pnpm generate:importmap`을 실행하고 dev 서버를 재시작한다.
 배포용 migration이 필요할 때는 `pnpm migrate:create initial-schema` 후 `pnpm migrate`를 사용한다.
 상태 확인은 `pnpm db:status`, 로그 확인은 `pnpm db:logs`, 종료는 `pnpm db:down`을 사용한다.
