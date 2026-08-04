@@ -43,6 +43,7 @@ export default buildConfig({
   sharp,
   typescript: { outputFile: path.resolve(dirname, '../payload-types.ts') },
   db: postgresAdapter({
+    extensions: ['postgis'],
     pool: { connectionString: process.env.DATABASE_URI ?? 'postgres://postgres:postgres@localhost:5432/dul_ui_gijun' }
   }),
   plugins: [

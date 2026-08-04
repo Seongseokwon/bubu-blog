@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit",
     "generate:types": "payload generate:types",
     "migrate": "payload migrate",
+    "migrate:create": "payload migrate:create",
+    "migrate:status": "payload migrate:status",
     "seed": "tsx src/seed/index.ts",
     "db:up": "docker compose up -d postgres",
     "db:down": "docker compose down",

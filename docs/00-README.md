@@ -88,13 +88,17 @@
 
 ## 로컬 PostgreSQL
 
-프로젝트 전용 PostgreSQL은 기본 포트 `5432`와 겹치지 않도록 호스트 `55432`를 사용한다.
+프로젝트 전용 PostgreSQL/PostGIS는 숙소 위치(`point`) 필드를 지원하기 위해 PostGIS 이미지를 사용하며,
+기본 포트 `5432`와 겹치지 않도록 호스트 `55432`를 사용한다.
 
 ```powershell
 Copy-Item .env.example .env
 pnpm db:up
-pnpm migrate
+pnpm dev
+# 다른 터미널에서
 pnpm seed
 ```
 
+개발 환경에서는 Payload의 Drizzle push가 스키마를 자동 반영하므로 먼저 `pnpm dev`를 실행한다.
+배포용 migration이 필요할 때는 `pnpm migrate:create initial-schema` 후 `pnpm migrate`를 사용한다.
 상태 확인은 `pnpm db:status`, 로그 확인은 `pnpm db:logs`, 종료는 `pnpm db:down`을 사용한다.
