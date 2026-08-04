@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>둘의 기준 | 직접 경험한 라이프스타일 리뷰 매거진</title>
+  <meta name="description" content="직접 써보고, 직접 가보고, 직접 경험한 우리의 선택을 기록합니다. 가전·가구·여행·숙소·맛집을 한곳에서 만나보세요.">
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="둘의 기준 | 직접 경험한 라이프스타일 리뷰 매거진">
+  <meta property="og:description" content="직접 써보고, 직접 가보고, 직접 경험한 우리의 선택들을 기록합니다.">
+  <meta property="og:url" content="https://example.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="둘의 기준 | 라이프스타일 리뷰 매거진">
+  <meta name="twitter:description" content="광고보다 경험. 후원보다 기록.">
+  <style>
+    :root {
+      --color-canvas: #faf8f4;
+      --color-surface: #ffffff;
+      --color-surface-soft: #f3f0ea;
+      --color-text-strong: #242424;
+      --color-text-body: #4f4b46;
+      --color-text-muted: #7b756d;
+      --color-primary: #66725b;
+      --color-primary-hover: #56624d;
+      --color-primary-weak: #e9eee5;
+      --color-accent: #c77d5d;
+      --color-accent-weak: #f5e8e1;
+      --color-border: #e8e2d9;
+      --color-success: #52705a;
+      --color-warning: #a86b45;
+      --color-white: #ffffff;
+      --color-overlay: rgba(250, 248, 244, .85);
+      --shadow-soft: 0 16px 40px rgba(65, 55, 43, .08);
+      --shadow-float: 0 22px 50px rgba(65, 55, 43, .14);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --container: 1200px;
+      --ease: 180ms ease;
+    }
+
+    body[data-theme="dark"] {
+      --color-canvas: #20231f;
+      --color-surface: #292d28;
+      --color-surface-soft: #30352f;
+      --color-text-strong: #f3f0e8;
+      --color-text-body: #d1cec5;
+      --color-text-muted: #aaa79f;
+      --color-primary: #9caf8f;
+      --color-primary-hover: #b4c5a7;
+      --color-primary-weak: #354234;
+      --color-accent: #d99473;
+      --color-accent-weak: #49362e;
+      --color-border: #444a42;
+      --color-success: #9bc09e;
+      --color-warning: #e1a27d;
+      --color-white: #ffffff;
+      --color-overlay: rgba(32, 35, 31, .92);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--color-text-body);
+      background: var(--color-canvas);
+      font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open, body.search-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { border: 0; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 3px solid rgba(102, 114, 91, .45); outline-offset: 4px; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .container { width: min(var(--container), calc(100% - 64px)); margin: 0 auto; }
+    .skip-link {
+      position: fixed; z-index: 100; left: 16px; top: -60px; padding: 10px 14px;
+      color: var(--color-white); background: var(--color-primary); border-radius: 8px;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* Shared UI */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; color: var(--color-primary);
+      font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+    .section-heading h2 { margin: 7px 0 0; color: var(--color-text-strong); font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.25; letter-spacing: -.045em; }
+    .section-heading p { max-width: 440px; margin: 8px 0 0; color: var(--color-text-muted); font-size: 14px; }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; color: var(--color-primary); font-size: 14px; font-weight: 800; }
+    .text-link svg { transition: transform var(--ease); }
+    .text-link:hover svg { transform: translateX(4px); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 20px; border-radius: 12px; font-size: 15px; font-weight: 800; transition: background var(--ease), color var(--ease), transform var(--ease), border-color var(--ease); }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { color: var(--color-white); background: var(--color-primary); }
+    .btn-primary:hover { background: var(--color-primary-hover); }
+    .btn-secondary { color: var(--color-primary-hover); background: var(--color-primary-weak); }
+    .btn-secondary:hover { background: #dfe8da; }
+    .btn-text { min-height: 36px; padding: 0; color: var(--color-primary); background: transparent; }
+    .btn-text:hover { color: var(--color-primary-hover); }
+    .btn:disabled { color: #a39d95; background: #ebe7e0; cursor: not-allowed; }
+    .tag { display: inline-flex; align-items: center; min-height: 25px; padding: 2px 9px; color: var(--color-primary-hover); background: var(--color-primary-weak); border-radius: 999px; font-size: 12px; font-weight: 800; line-height: 1.3; }
+    .tag.terracotta { color: #985a3f; background: var(--color-accent-weak); }
+    .tag.neutral { color: var(--color-text-muted); background: var(--color-surface-soft); }
+    .rating { display: inline-flex; align-items: center; gap: 5px; color: var(--color-accent); font-size: 14px; font-weight: 850; }
+    .rating strong { color: var(--color-text-strong); font-size: 15px; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 40; height: 74px; border-bottom: 1px solid transparent; background: var(--color-overlay); transition: border-color var(--ease), background var(--ease), box-shadow var(--ease); }
+    .site-header.scrolled { border-color: var(--color-border); background: var(--color-overlay); box-shadow: 0 4px 20px rgba(70, 60, 46, .04); backdrop-filter: blur(16px); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .brand { display: inline-flex; flex-direction: column; color: var(--color-text-strong); font-weight: 900; line-height: 1.05; letter-spacing: -.075em; }
+    .brand em { margin-top: 5px; color: var(--color-primary); font-size: 10px; font-style: normal; font-weight: 700; letter-spacing: .04em; }
+    .primary-nav { display: flex; align-items: center; gap: 26px; margin-left: auto; margin-right: 30px; }
+    .primary-nav a { position: relative; padding: 6px 0; color: var(--color-text-body); font-size: 14px; font-weight: 700; }
+    .primary-nav a::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: var(--color-primary); transform: scaleX(0); transform-origin: right; transition: transform var(--ease); }
+    .primary-nav a:hover, .primary-nav a[aria-current="page"] { color: var(--color-primary-hover); }
+    .primary-nav a:hover::after, .primary-nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+    .header-actions { display: flex; align-items: center; gap: 8px; }
+    .icon-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; color: var(--color-text-strong); background: transparent; border-radius: 10px; transition: background var(--ease), color var(--ease); }
+    .icon-btn:hover { color: var(--color-primary-hover); background: var(--color-primary-weak); }
+    .menu-btn { display: none; }
+    .theme-btn .sun-icon { display: none; }
+    body[data-theme="dark"] .theme-btn .sun-icon { display: block; }
+    body[data-theme="dark"] .theme-btn .moon-icon { display: none; }
+
+    /* Search panel */
+    .search-panel { position: fixed; inset: 0; z-index: 60; display: grid; place-items: start center; padding-top: 100px; background: rgba(36, 36, 36, .32); opacity: 0; pointer-events: none; transition: opacity var(--ease); }
+    .search-panel.is-open { opacity: 1; pointer-events: auto; }
+    .search-box { width: min(700px, calc(100% - 40px)); padding: 24px; background: var(--color-canvas); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-float); transform: translateY(-12px); transition: transform var(--ease); }
+    .search-panel.is-open .search-box { transform: translateY(0); }
+    .search-box-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+    .search-box-head strong { color: var(--color-text-strong); font-size: 18px; }
+    .search-form { display: flex; align-items: center; gap: 10px; padding: 0 14px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; }
+    .search-form:focus-within { border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(102, 114, 91, .12); }
+    .search-form svg { flex: 0 0 auto; color: var(--color-primary); }
+    .search-form input { width: 100%; height: 50px; color: var(--color-text-strong); background: transparent; border: 0; outline: 0; }
+    .search-hint { margin: 12px 0 0; color: var(--color-text-muted); font-size: 13px; }
+    .search-close { color: var(--color-text-muted); background: transparent; }
+
+    /* Hero */
+    .hero { padding: 82px 0 56px; }
+    .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: clamp(48px, 8vw, 110px); }
+    .hero-copy h1 { max-width: 600px; margin: 20px 0 22px; color: var(--color-text-strong); font-size: clamp(2.4rem, 6vw, 4.8rem); line-height: 1.1; letter-spacing: -.08em; }
+    .hero-copy h1 span { color: var(--color-primary); }
+    .hero-copy > p { max-width: 510px; margin: 0; font-size: 17px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 24px; color: var(--color-text-muted); font-size: 13px; }
+    .hero-note svg { color: var(--color-success); }
+    .hero-visual { position: relative; min-height: 475px; }
+    .hero-photo { position: absolute; inset: 0 20px 0 0; overflow: hidden; border-radius: 18px; background: linear-gradient(137deg, #c9c4b5 0%, #e8e0d2 37%, #b8b79e 37%, #d4cbb8 100%); box-shadow: var(--shadow-float); }
+    .hero-photo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, transparent 40%, rgba(102, 114, 91, .25) 40.2%, rgba(102, 114, 91, .03) 67%), radial-gradient(circle at 66% 25%, rgba(255,255,255,.78) 0 8%, transparent 8.5%), linear-gradient(90deg, rgba(255,255,255,.24), transparent 45%); }
+    .hero-photo::after { content: ""; position: absolute; width: 190px; height: 190px; right: 14%; bottom: 10%; border-radius: 50% 50% 10px 10px; background: #a98768; opacity: .8; box-shadow: -130px 46px 0 -36px #7e886e, 34px -60px 0 -51px #f8f2e5; }
+    .photo-caption { position: absolute; left: 28px; bottom: 26px; z-index: 1; color: rgba(36,36,36,.74); font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+    .floating-labels { position: absolute; z-index: 2; top: 42px; right: 0; display: grid; gap: 10px; }
+    .floating-label { display: flex; align-items: center; gap: 8px; padding: 11px 14px; color: var(--color-text-strong); background: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.8); border-radius: 10px; box-shadow: 0 10px 22px rgba(65, 55, 43, .1); font-size: 13px; font-weight: 800; }
+    .floating-label svg { color: var(--color-primary); }
+    body[data-theme="dark"] .floating-label { color: #f3f0e8; background: rgba(41, 45, 40, .96); border-color: #566254; box-shadow: 0 12px 24px rgba(0, 0, 0, .26); }
+    body[data-theme="dark"] .floating-label svg { color: #b4c5a7; }
+    body[data-theme="dark"] .photo-caption { color: rgba(36, 36, 36, .86); }
+
+    /* Trust strip */
+    .trust-strip { padding: 22px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .trust-list { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; }
+    .trust-item { padding: 0 24px; border-left: 1px solid var(--color-border); }
+    .trust-item:first-child { padding-left: 0; border-left: 0; }
+    .trust-item dt { margin-bottom: 3px; color: var(--color-text-muted); font-size: 13px; }
+    .trust-item dd { margin: 0; color: var(--color-text-strong); font-size: 20px; font-weight: 900; letter-spacing: -.04em; }
+
+    /* Categories */
+    .section { padding: 96px 0 0; }
+    #main-content { display: flex; flex-direction: column; }
+    #main-content > #top { order: 1; }
+    #main-content > .trust-strip { order: 2; }
+    #main-content > #reviews { order: 3; }
+    #main-content > #categories { order: 4; }
+    #main-content > .longevity-section { order: 5; }
+    #main-content > #travel { order: 6; }
+    #main-content > #situations { order: 7; }
+    #main-content > #principles { order: 8; }
+    .category-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+    .category-card { display: flex; min-height: 160px; flex-direction: column; justify-content: space-between; padding: 18px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); transition: background var(--ease), border-color var(--ease), transform var(--ease); }
+    .category-card:hover { background: #fdfcf9; border-color: #ccd6c5; transform: translateY(-2px); }
+    .category-icon { display: grid; place-items: center; width: 38px; height: 38px; color: var(--color-primary); background: var(--color-primary-weak); border-radius: 11px; }
+    .category-card h3 { margin: 15px 0 0; color: var(--color-text-strong); font-size: 17px; line-height: 1.3; }
+    .category-card p { margin: 4px 0 0; color: var(--color-text-muted); font-size: 12px; line-height: 1.5; }
+    .category-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 15px; color: var(--color-primary); font-size: 12px; font-weight: 800; }
+    .category-foot svg { transition: transform var(--ease); }
+    .category-card:hover .category-foot svg { transform: translateX(3px); }
+
+    /* Reviews */
+    .feature-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 18px; }
+    .review-card { overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); transition: border-color var(--ease), transform var(--ease), box-shadow var(--ease); }
+    .review-card:hover { border-color: #cbd5c4; transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+    .review-card.featured { grid-row: span 2; }
+    .review-image { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: #d8d0c1; }
+    .featured .review-image { aspect-ratio: 4 / 3; }
+    .review-image::before, .review-image::after { content: ""; position: absolute; }
+    .art-dishwasher { background: linear-gradient(140deg, #c9c8bd 0%, #eee9dc 44%, #a8afa3 44.4%, #d9d2c4 100%); }
+    .art-dishwasher::before { width: 48%; height: 65%; right: 13%; top: 16%; border: 8px solid #777b73; border-radius: 7px; background: linear-gradient(#b4baa9 0 15%, #ece9df 15% 20%, #515953 20% 24%, #d7d1c4 24% 65%, #899487 65%); box-shadow: -140px 50px 0 -42px #aa886c; }
+    .art-mattress { background: linear-gradient(125deg, #b3b18f 0%, #e7dfd1 52%, #f7f1e5 52.5%); }
+    .art-mattress::before { width: 70%; height: 42%; left: 15%; bottom: 20%; border-radius: 12px; background: #f5f0e7; box-shadow: 0 -16px 0 #d7cfc0, 30px 20px 0 -8px #9ca587; transform: rotate(-8deg); }
+    .art-food { background: linear-gradient(130deg, #e7dccb 0 48%, #bdc6a8 48.5%); }
+    .art-food::before { width: 37%; height: 56%; right: 23%; bottom: 20%; border-radius: 50% 50% 18px 18px; background: #eee5d4; border: 9px solid #a9af9b; box-shadow: -110px 45px 0 -36px #c78d62; }
+    .art-sofa { background: linear-gradient(145deg, #ddcfba 0 50%, #b3bba3 50.5%); }
+    .art-sofa::before { width: 64%; height: 48%; left: 18%; bottom: 19%; border-radius: 18px 18px 7px 7px; background: #a99b84; box-shadow: 0 -39px 0 -5px #b8ab93, 30px 33px 0 -14px #6f7562; }
+    .art-pan { background: linear-gradient(135deg, #d9cdb7, #f3ede1 55%, #b0b79f 55.5%); }
+    .art-pan::before { width: 43%; height: 43%; left: 25%; top: 26%; border-radius: 50%; background: #66706b; border: 9px solid #9a9f95; box-shadow: 45px 37px 0 -28px #5a625e; }
+    .art-laundry { background: linear-gradient(140deg, #c5c9b2, #eee7da 55%, #b69276 55.5%); }
+    .art-laundry::before { width: 35%; height: 68%; left: 31%; top: 16%; border-radius: 5px; background: #f5f0e5; border: 9px solid #c1b8a8; box-shadow: 60px 30px 0 -28px #858c73; }
+    .art-suitcase { background: linear-gradient(135deg, #c4a48c, #e8dbc9 52%, #a8b19c 52.5%); }
+    .art-suitcase::before { width: 34%; height: 56%; left: 32%; top: 27%; border-radius: 8px; background: #7e8a76; border: 8px solid #59675c; box-shadow: 42px 40px 0 -29px #d3c0a8; }
+    .review-image-label { position: absolute; left: 14px; bottom: 14px; color: rgba(36,36,36,.72); font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+    .review-body { padding: 21px 22px 22px; }
+    .review-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .review-body h3 { margin: 14px 0 9px; color: var(--color-text-strong); font-size: clamp(1.08rem, 2vw, 1.35rem); line-height: 1.4; letter-spacing: -.04em; }
+    .review-conclusion { margin: 0; color: var(--color-text-body); font-size: 14px; line-height: 1.65; }
+    .review-pros-cons { display: grid; gap: 7px; margin: 18px 0; padding-top: 16px; border-top: 1px solid var(--color-border); font-size: 13px; line-height: 1.45; }
+    .review-pros-cons div { display: flex; gap: 8px; }
+    .review-pros-cons b { flex: 0 0 30px; font-size: 12px; }
+    .pros b { color: var(--color-success); }
+    .cons b { color: var(--color-warning); }
+    .review-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .review-footer::after { content: "상세 보기 →"; color: var(--color-primary); font-size: 12px; font-weight: 850; white-space: nowrap; }
+    .detail-link { display: inline-flex; align-items: center; gap: 5px; color: var(--color-primary); font-size: 12px; font-weight: 850; }
+    .detail-link svg { transition: transform var(--ease); }
+    .review-card:hover .detail-link svg { transform: translateX(3px); }
+    .updated { color: var(--color-text-muted); font-size: 11px; }
+    .feature-side { display: grid; grid-template-rows: 1fr 1fr; gap: 18px; }
+    .feature-side .review-card { display: grid; grid-template-columns: 38% 62%; }
+    .feature-side .review-image { height: 100%; aspect-ratio: auto; }
+    .feature-side .review-body { padding: 18px; }
+    .feature-side .review-body h3 { margin-top: 10px; font-size: 18px; }
+    .feature-side .review-pros-cons { margin: 12px 0; padding-top: 12px; }
+    .feature-side .updated { display: none; }
+
+    /* Travel editorial strip */
+    .travel-section { padding-top: 96px; }
+    .travel-intro { display: grid; grid-template-columns: .9fr 1.1fr; gap: 30px; align-items: end; margin-bottom: 28px; }
+    .travel-intro h2 { max-width: 520px; margin: 7px 0 0; color: var(--color-text-strong); font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.25; letter-spacing: -.05em; }
+    .travel-intro p { max-width: 520px; margin: 0; color: var(--color-text-muted); font-size: 15px; }
+    .travel-grid { display: grid; grid-template-columns: 1.15fr .85fr .85fr; gap: 14px; }
+    .travel-card { position: relative; min-height: 285px; overflow: hidden; padding: 22px; display: flex; flex-direction: column; justify-content: end; border-radius: var(--radius-md); color: var(--color-white); background: #929a7e; }
+    .travel-card.review-card { border: 0; }
+    .travel-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 25%, rgba(28, 31, 26, .72)); }
+    .travel-card > * { position: relative; z-index: 1; }
+    .travel-card h3 { max-width: 300px; margin: 8px 0 7px; color: var(--color-white); font-size: 24px; line-height: 1.2; letter-spacing: -.05em; }
+    .travel-card p { margin: 0; color: rgba(255,255,255,.78); font-size: 13px; }
+    .travel-card .tag { width: fit-content; color: #f4f1e8; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.22); }
+    .travel-card .rating { margin-top: 13px; color: #f0bd9f; }
+    .travel-sapporo { background: linear-gradient(135deg, #7d887b, #c5b59d 55%, #5f726d); }
+    .travel-hotel { background: linear-gradient(140deg, #8b6e5c, #c7ae92 55%, #56695e); }
+    .travel-onsen { background: linear-gradient(135deg, #7c8f82, #b99d7b 55%, #5d716c); }
+
+    /* Longevity */
+    .longevity-section { padding-bottom: 0; }
+    .longevity-wrap { padding: 38px; background: var(--color-surface-soft); border-radius: var(--radius-lg); }
+    .longevity-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .long-card { display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: center; padding: 14px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+    .long-thumb { width: 76px; aspect-ratio: 1; overflow: hidden; border-radius: 10px; }
+    .long-thumb .review-image { height: 100%; aspect-ratio: auto; }
+    .long-card h3 { margin: 0; color: var(--color-text-strong); font-size: 15px; line-height: 1.35; }
+    .long-period { margin: 2px 0 8px; color: var(--color-text-muted); font-size: 12px; }
+    .score-change { display: flex; align-items: center; gap: 7px; color: var(--color-primary-hover); font-size: 12px; font-weight: 800; }
+    .score-change span { color: var(--color-text-muted); font-weight: 600; }
+    .buy-again { display: inline-flex; align-items: center; gap: 5px; margin-top: 7px; color: var(--color-success); font-size: 12px; font-weight: 800; }
+    .buy-again svg { width: 14px; }
+
+    /* Situations */
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .filter-chip { padding: 8px 13px; color: var(--color-text-body); background: transparent; border: 1px solid var(--color-border); border-radius: 999px; font-size: 13px; font-weight: 700; transition: color var(--ease), background var(--ease), border-color var(--ease); }
+    .filter-chip:hover { border-color: #b6c4ae; color: var(--color-primary-hover); }
+    .filter-chip.is-active { color: var(--color-white); background: var(--color-primary); border-color: var(--color-primary); }
+    .filter-status { min-height: 22px; margin: -16px 0 18px; color: var(--color-text-muted); font-size: 13px; }
+    .filter-status:empty { display: none; }
+    .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .review-card.is-hidden { display: none; }
+    .no-results { display: none; grid-column: 1 / -1; padding: 45px 20px; text-align: center; color: var(--color-text-muted); background: var(--color-surface); border: 1px dashed var(--color-border); border-radius: var(--radius-md); }
+    .no-results.is-visible { display: block; }
+    .recent-grid .review-body { padding-top: 18px; }
+
+    /* Principles */
+    .principles-section { padding-bottom: 0; }
+    .principles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .principle { padding: 26px 26px 28px 0; border-right: 1px solid var(--color-border); }
+    .principle + .principle { padding-left: 26px; }
+    .principle:last-child { border-right: 0; }
+    .principle-number { display: block; margin-bottom: 18px; color: var(--color-accent); font-size: 13px; font-weight: 900; }
+    .principle h3 { margin: 0 0 7px; color: var(--color-text-strong); font-size: 17px; line-height: 1.4; letter-spacing: -.03em; }
+    .principle p { margin: 0; color: var(--color-text-muted); font-size: 13px; line-height: 1.65; }
+
+    /* Newsletter */
+    .newsletter { padding: 96px 0; }
+    .newsletter-box { display: grid; grid-template-columns: 1fr .92fr; align-items: center; gap: 50px; padding: clamp(32px, 6vw, 64px); background: var(--color-primary); border-radius: var(--radius-lg); }
+    .newsletter-box .eyebrow { color: #dce8d5; }
+    .newsletter-box h2 { max-width: 550px; margin: 15px 0 12px; color: var(--color-white); font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1.2; letter-spacing: -.06em; }
+    .newsletter-box p { max-width: 500px; margin: 0; color: #e6ece1; font-size: 15px; }
+    .newsletter-form-wrap { padding: 20px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 15px; }
+    .newsletter-form { display: flex; gap: 8px; padding: 5px; background: var(--color-white); border-radius: 11px; }
+    .newsletter-form input { min-width: 0; width: 100%; height: 40px; padding: 0 10px; color: var(--color-text-strong); border: 0; outline: 0; }
+    .newsletter-form .btn { min-height: 40px; padding: 0 14px; color: var(--color-white); background: var(--color-accent); font-size: 13px; white-space: nowrap; }
+    .newsletter-form .btn:hover { background: #ad684c; }
+    .form-message { min-height: 23px; margin: 9px 3px 0; color: #f7e0d4; font-size: 12px; }
+    .form-message.success { color: #e6f1dd; }
+    .form-message.error { color: #ffd5c2; }
+
+    /* Footer */
+    .site-footer { padding: 52px 0 30px; border-top: 1px solid var(--color-border); background: var(--color-surface-soft); }
+    .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 38px; padding-bottom: 44px; }
+    .footer-brand p { max-width: 260px; margin: 14px 0 0; color: var(--color-text-muted); font-size: 13px; line-height: 1.7; }
+    .footer-col h2 { margin: 3px 0 14px; color: var(--color-text-strong); font-size: 13px; }
+    .footer-col a { display: block; width: fit-content; margin: 7px 0; color: var(--color-text-muted); font-size: 13px; }
+    .footer-col a:hover { color: var(--color-primary-hover); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 24px; padding-top: 22px; border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 11px; }
+    .disclosure { max-width: 560px; }
+    .top-btn { position: fixed; right: 24px; bottom: 24px; z-index: 30; display: grid; place-items: center; width: 44px; height: 44px; color: var(--color-white); background: var(--color-primary); border-radius: 50%; box-shadow: 0 10px 25px rgba(68, 78, 58, .24); opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity var(--ease), transform var(--ease), background var(--ease); }
+    .top-btn.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .top-btn:hover { background: var(--color-primary-hover); }
+
+    @media (max-width: 1023px) {
+      .container { width: min(var(--container), calc(100% - 48px)); }
+      .primary-nav { gap: 16px; margin-right: 16px; }
+      .category-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-grid { gap: 48px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .travel-grid { grid-template-columns: 1.1fr .9fr .9fr; }
+      .feature-side { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; }
+      .feature-side .review-card { display: block; }
+      .feature-side .review-image { aspect-ratio: 16 / 10; }
+      .feature-side .updated { display: inline; }
+      .longevity-list { grid-template-columns: 1fr; }
+      .long-card { grid-template-columns: 86px 1fr auto; }
+      .long-thumb { width: 86px; }
+      .buy-again { margin-top: 0; }
+    }
+    @media (max-width: 767px) {
+      body { font-size: 16px; }
+      .container { width: calc(100% - 40px); }
+      .site-header { height: 68px; }
+      .primary-nav { position: fixed; inset: 68px 0 auto 0; display: none; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 10px 20px 22px; background: var(--color-overlay); border-bottom: 1px solid var(--color-border); box-shadow: 0 18px 30px rgba(65,55,43,.08); }
+      .primary-nav.is-open { display: flex; }
+      .primary-nav a { padding: 12px 0; border-bottom: 1px solid var(--color-border); }
+      .primary-nav a:last-child { border-bottom: 0; }
+      .menu-btn { display: inline-grid; }
+      .hero { padding: 57px 0 42px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+      .hero-copy h1 { margin-top: 17px; font-size: clamp(2.5rem, 12vw, 4rem); }
+      .hero-copy > p { font-size: 16px; }
+      .hero-actions .btn { flex: 1 1 160px; }
+      .hero-note { align-items: flex-start; }
+      .hero-visual { min-height: 330px; }
+      .hero-photo { right: 10px; }
+      .floating-labels { top: 18px; right: 0; gap: 7px; }
+      .floating-label { padding: 8px 10px; font-size: 11px; }
+      .trust-list { grid-template-columns: repeat(2, 1fr); gap: 18px 0; }
+      .trust-item:nth-child(3) { padding-left: 0; border-left: 0; }
+      .trust-item:nth-child(3), .trust-item:nth-child(4) { padding-top: 2px; }
+      .section { padding-top: 64px; }
+      .section-heading { display: block; margin-bottom: 23px; }
+      .section-heading .text-link { margin-top: 14px; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+      .category-card { min-height: 148px; padding: 15px; }
+      .category-card h3 { font-size: 16px; }
+      .feature-side { grid-template-columns: 1fr; }
+      .feature-side .review-card { display: grid; grid-template-columns: 36% 64%; }
+      .feature-side .review-image { height: 100%; aspect-ratio: auto; }
+      .feature-side .review-body { padding: 15px; }
+      .feature-side .review-body h3 { font-size: 16px; }
+      .feature-side .review-pros-cons { margin-bottom: 8px; }
+      .travel-section { padding-top: 64px; }
+      .travel-intro { grid-template-columns: 1fr; gap: 12px; }
+      .travel-grid { grid-template-columns: 1fr; gap: 9px; }
+      .travel-card { min-height: 220px; }
+      .longevity-wrap { padding: 22px 15px; }
+      .long-card { grid-template-columns: 70px 1fr; padding: 11px; }
+      .long-thumb { width: 70px; }
+      .buy-again { grid-column: 2; margin-top: -7px; }
+      .recent-grid { grid-template-columns: 1fr; }
+      .principles { grid-template-columns: 1fr 1fr; }
+      .principle { padding: 22px 15px 23px 0; border-right: 1px solid var(--color-border); }
+      .principle + .principle { padding-left: 15px; }
+      .principle:nth-child(2) { border-right: 0; }
+      .principle:nth-child(n+3) { border-top: 1px solid var(--color-border); }
+      .newsletter { padding: 64px 0; }
+      .newsletter-box { grid-template-columns: 1fr; gap: 28px; padding: 30px 22px; }
+      .newsletter-form { display: block; padding: 6px; }
+      .newsletter-form input { display: block; height: 43px; }
+      .newsletter-form .btn { width: 100%; margin-top: 6px; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { display: block; }
+      .disclosure { margin-bottom: 10px; }
+      .top-btn { right: 18px; bottom: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "둘의 기준",
+    "url": "https://example.com/",
+    "description": "직접 경험한 라이프스타일 리뷰 매거진"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "둘의 기준",
+    "url": "https://example.com/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "name": "삼성 12인용 식기세척기, 2인 가구에도 필요했을까?",
+    "author": { "@type": "Organization", "name": "둘의 기준" },
+    "reviewRating": { "@type": "Rating", "ratingValue": "4.3", "bestRating": "5" },
+    "itemReviewed": { "@type": "Product", "name": "삼성 12인용 식기세척기" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "직접 써보고, 직접 가보고, 직접 경험한 우리의 선택들을 기록합니다.",
+    "author": { "@type": "Organization", "name": "둘의 기준" },
+    "publisher": { "@type": "Organization", "name": "둘의 기준" },
+    "mainEntityOfPage": "https://example.com/"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="둘의 기준 홈">둘의 기준<em>OUR EVERYDAY STANDARD</em></a>
+      <nav class="primary-nav" id="primary-nav" aria-label="주요 카테고리">
+        <a href="#reviews" data-category-filter="생활">생활</a>
+        <a href="#reviews" data-category-filter="가전">가전</a>
+        <a href="#reviews" data-category-filter="가구">가구</a>
+        <a href="#travel" data-category-filter="여행">여행</a>
+        <a href="#reviews" data-category-filter="맛집">맛집</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn theme-btn" id="theme-toggle" type="button" aria-label="다크 모드로 전환" aria-pressed="false">
+          <svg class="moon-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path></svg>
+          <svg class="sun-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        </button>
+        <button class="icon-btn" id="search-open" type="button" aria-label="리뷰 검색 열기" aria-controls="search-panel" aria-expanded="false">
+          <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="primary-nav" aria-expanded="false">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="search-panel" id="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title" aria-hidden="true">
+    <div class="search-box">
+      <div class="search-box-head"><strong id="search-title">리뷰 검색</strong><button class="icon-btn search-close" id="search-close" type="button" aria-label="검색 닫기">✕</button></div>
+      <form class="search-form" id="search-form" role="search">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+        <label class="sr-only" for="search-input">찾고 싶은 제품이나 키워드</label>
+        <input id="search-input" type="search" placeholder="제품명이나 키워드를 입력해보세요" autocomplete="off">
+      </form>
+      <p class="search-hint" id="search-hint">식기세척기, 좁은 집, 직접 구매처럼 검색해보세요.</p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Lifestyle review magazine</span>
+          <h1 id="hero-title">직접 써보고,<br>직접 가보고,<br><span>우리의 선택</span>을 기록합니다.</h1>
+          <p>좋은 선택은 광고보다 직접 경험에서 나온다고 믿습니다. 물건을 사고, 공간을 예약하고, 둘이 다녀온 시간을 솔직하게 남깁니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#reviews">최근 리뷰 보기 <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#categories">카테고리 보기</a>
+          </div>
+          <div class="hero-note">
+            <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"></path></svg>
+            광고보다 경험 · 후원보다 기록
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="햇살이 드는 차분한 신혼집의 식탁과 생활용품을 표현한 이미지">
+          <div class="hero-photo"><span class="photo-caption">A QUIET MORNING AT HOME / 08:12</span></div>
+          <div class="floating-labels" aria-label="리뷰 신뢰 정보">
+            <div class="floating-label"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"></path></svg> 직접 구매</div>
+            <div class="floating-label"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l2.5 2"></path></svg> 6개월 사용</div>
+            <div class="floating-label"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"></path></svg> 재구매 의사 있음</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="리뷰 기준 지표">
+      <div class="container">
+        <dl class="trust-list">
+          <div class="trust-item"><dt>직접 사용 리뷰</dt><dd>48개</dd></div>
+          <div class="trust-item"><dt>3개월 이상 사용</dt><dd>31개</dd></div>
+          <div class="trust-item"><dt>직접 구매 비율</dt><dd>92%</dd></div>
+          <div class="trust-item"><dt>최종 업데이트</dt><dd>2026.08</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="categories" aria-labelledby="categories-title">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">Explore the standard</span><h2 id="categories-title">무엇을 선택하기 전에<br>경험부터 찾아보세요.</h2></div><a href="#reviews" class="text-link">전체 리뷰 보기 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+        <div class="category-grid">
+          <a class="category-card" href="#reviews" data-category-filter="가전"><span class="category-icon"><svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"></rect><circle cx="12" cy="14" r="3.7"></circle><path d="M9 6h6"></path></svg></span><div><h3>가전</h3><p>식기세척기부터 청소기까지</p></div><div class="category-foot">12개의 리뷰 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div></a>
+          <a class="category-card" href="#reviews" data-category-filter="가구"><span class="category-icon"><svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14h16v5H4zM6 14V9a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5M7 19v2M17 19v2"></path></svg></span><div><h3>가구</h3><p>오래 머무는 집의 기준</p></div><div class="category-foot">8개의 리뷰 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div></a>
+          <a class="category-card" href="#reviews" data-category-filter="생활"><span class="category-icon"><svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 4v7a2 2 0 0 0 4 0V4M9 4v17M17 4v17M17 4c-2.2 2.4-2.2 6 0 8"></path></svg></span><div><h3>생활용품</h3><p>실제로 사용한 생활의 도구</p></div><div class="category-foot">9개의 리뷰 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div></a>
+          <a class="category-card" href="#travel" data-category-filter="여행"><span class="category-icon"><svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m14 4 6 6-8 8-6-6zM8 16l-4 4M16 8l4-4M10 10l4 4"></path></svg></span><div><h3>여행</h3><p>직접 다녀온 숙소와 여행지</p></div><div class="category-foot">11개의 리뷰 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div></a>
+          <a class="category-card" href="#reviews" data-category-filter="맛집"><span class="category-icon"><svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11h16v2H4zM6 13v6h12v-6M8 9V5M12 9V4M16 9V5"></path></svg></span><div><h3>맛집</h3><p>직접 방문한 식당과 메뉴</p></div><div class="category-foot">7개의 리뷰 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div></a>
+          <a class="category-card" href="#reviews" data-category-filter="비교"><span class="category-icon"><svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h12M6 12h8M6 17h12"></path><path d="m16 10 3 3-3 3"></path></svg></span><div><h3>비교 콘텐츠</h3><p>선택지를 나란히 놓고 비교합니다</p></div><div class="category-foot">6개의 리뷰 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews" aria-labelledby="popular-title">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">Most read this month</span><h2 id="popular-title">이번 달 많이 읽은 리뷰</h2></div><p>구매 전에 궁금한 결론과, 사용 뒤에야 알게 된 단점을 카드에서 먼저 확인해보세요.</p></div>
+        <div class="feature-grid">
+          <a class="review-card featured" href="#newsletter" data-category="가전" data-tags="2인 가구,맞벌이 부부,오래 쓰는 제품,재구매 의사 있음" data-title="삼성 12인용 식기세척기 2인 가구 직접 구매 6개월">
+            <div class="review-image art-dishwasher" role="img" aria-label="차분한 주방에 놓인 식기세척기 이미지 플레이스홀더"><span class="review-image-label">실제 사용 공간을 기준으로 기록</span></div>
+            <div class="review-body"><div class="review-meta"><span class="tag">가전</span><span class="tag neutral">직접 구매</span><span class="tag neutral">6개월 사용</span></div><h3>삼성 12인용 식기세척기, 2인 가구에도 필요했을까?</h3><p class="review-conclusion">냄비까지 한 번에 넣을 수 있어 다시 사도 같은 크기를 선택할 것 같다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>설거지 시간 절약</span></div><div class="cons"><b>단점</b><span>플라스틱 건조는 아쉬움</span></div></div><div class="review-footer"><span class="rating"><strong>4.3</strong> / 5</span><span class="updated">2026.08.01 업데이트</span></div></div>
+          </a>
+          <div class="feature-side">
+            <a class="review-card" href="#newsletter" data-category="가구" data-tags="2인 가구,좁은 신혼집,오래 쓰는 제품" data-title="신혼집 매트리스 1년 사용 후기 허리 지지감">
+              <div class="review-image art-mattress" role="img" aria-label="빛이 드는 침실과 매트리스 이미지 플레이스홀더"></div>
+              <div class="review-body"><div class="review-meta"><span class="tag">가구</span><span class="tag neutral">직접 구매</span><span class="tag neutral">1년 사용</span></div><h3>신혼집 매트리스 1년 사용 후기, 처음과 평가가 달라진 점</h3><p class="review-conclusion">첫인상보다 장기간 허리 지지감이 더 만족스러웠다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>안정적인 지지감</span></div><div class="cons"><b>단점</b><span>커버 관리가 번거로움</span></div></div><div class="review-footer"><span class="rating"><strong>4.5</strong> / 5</span><span class="updated">2026.07.28 업데이트</span></div></div>
+            </a>
+            <a class="review-card" href="#newsletter" data-category="생활" data-tags="맞벌이 부부,청소 시간을 줄이고 싶은 집,가성비 우선" data-title="음식물처리기 3개월 사용 냄새 필터 비용">
+              <div class="review-image art-food" role="img" aria-label="주방 한켠의 음식물처리기 이미지 플레이스홀더"></div>
+              <div class="review-body"><div class="review-meta"><span class="tag">생활</span><span class="tag neutral">직접 구매</span><span class="tag neutral">3개월 사용</span></div><h3>음식물처리기 3개월 사용 후에도 냄새가 없었을까?</h3><p class="review-conclusion">처리 과정은 편하지만 필터 비용까지 고려해야 했다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>음식물 보관 스트레스 감소</span></div><div class="cons"><b>단점</b><span>소모품 비용</span></div></div><div class="review-footer"><span class="rating"><strong>4.0</strong> / 5</span><span class="updated">2026.07.15 업데이트</span></div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section longevity-section" aria-labelledby="longevity-title">
+      <div class="container">
+        <div class="longevity-wrap"><div class="section-heading"><div><span class="eyebrow">After the honeymoon period</span><h2 id="longevity-title">시간이 지나도 만족한 제품</h2></div><p>개봉 직후가 아니라 최소 6개월 이상 사용한 뒤 다시 평가했습니다.</p></div>
+          <div class="longevity-list">
+            <article class="long-card"><div class="long-thumb"><div class="review-image art-laundry" role="img" aria-label="무선청소기 이미지 플레이스홀더"></div></div><div><h3>LG 무선청소기</h3><p class="long-period">사용 기간 14개월</p><div class="score-change"><span>처음 4.2</span> → 현재 4.5</div></div><span class="buy-again"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>다시 구매할 의향 있음</span></article>
+            <article class="long-card"><div class="long-thumb"><div class="review-image art-sofa" role="img" aria-label="패브릭 소파 이미지 플레이스홀더"></div></div><div><h3>패브릭 3인 소파</h3><p class="long-period">사용 기간 11개월</p><div class="score-change"><span>처음 4.0</span> → 현재 4.3</div></div><span class="buy-again"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>다시 구매할 의향 있음</span></article>
+            <article class="long-card"><div class="long-thumb"><div class="review-image art-pan" role="img" aria-label="프라이팬 이미지 플레이스홀더"></div></div><div><h3>스테인리스 프라이팬</h3><p class="long-period">사용 기간 8개월</p><div class="score-change"><span>처음 3.8</span> → 현재 4.1</div></div><span class="buy-again"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>다시 구매할 의향 있음</span></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="travel-section" id="travel" aria-labelledby="travel-title">
+      <div class="container">
+        <div class="travel-intro"><div><span class="eyebrow">Travel, as we lived it</span><h2 id="travel-title">둘이 다녀온 여행</h2></div><p>직접 예약하고, 직접 다녀온 숙소와 여행지의 동선·총경비·다시 갈 의향을 기록합니다. 사진보다 실제 일정에 도움이 되는 정보를 먼저 보여드려요.</p></div>
+        <div class="travel-grid">
+          <a class="travel-card review-card travel-sapporo" href="#newsletter" data-category="여행" data-tags="2인 가구,직접 다녀옴,재방문 의사 있음" data-title="삿포로 3박4일 총경비 실제 일정"><span class="tag">여행 일정</span><h3>삿포로 3박 4일</h3><p>항공·숙소 포함 총경비와 실제 동선</p><span class="rating"><strong>4.6</strong> / 5</span></a>
+          <a class="travel-card review-card travel-hotel" href="#newsletter" data-category="숙소" data-tags="직접 예약,3박 숙박,재숙박 의사 있음" data-title="그랑벨 호텔 3박 후기 삿포로 숙소"><span class="tag">숙소 리뷰</span><h3>그랑벨 호텔</h3><p>3박 후기 · 역과 온천 접근성</p><span class="rating"><strong>4.4</strong> / 5</span></a>
+          <a class="travel-card review-card travel-onsen" href="#newsletter" data-category="여행지" data-tags="직접 다녀옴,3박4일,재방문 의사 있음" data-title="조잔케이 vs 노보리베츠 온천 여행지 비교"><span class="tag">여행지 비교</span><h3>조잔케이 vs 노보리베츠</h3><p>온천 분위기와 이동 시간을 비교</p><span class="rating"><strong>4.2</strong> / 5</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="situations" aria-labelledby="situations-title">
+      <div class="container"><div class="section-heading"><div><span class="eyebrow">Latest field notes</span><h2 id="situations-title">최근 리뷰</h2></div><p>집에서 매일 쓰는 물건부터, 직접 예약한 숙소와 둘이 방문한 맛집까지 같은 기준으로 기록합니다.</p></div>
+        <div class="filter-row" role="group" aria-label="생활 상황별 리뷰 필터">
+          <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">전체 보기</button><button class="filter-chip" type="button" data-filter="2인 가구" aria-pressed="false">2인 가구</button><button class="filter-chip" type="button" data-filter="좁은 신혼집" aria-pressed="false">좁은 신혼집</button><button class="filter-chip" type="button" data-filter="맞벌이 부부" aria-pressed="false">맞벌이 부부</button><button class="filter-chip" type="button" data-filter="요리를 자주 하는 집" aria-pressed="false">요리를 자주 하는 집</button><button class="filter-chip" type="button" data-filter="청소 시간을 줄이고 싶은 집" aria-pressed="false">청소 시간을 줄이고 싶은 집</button><button class="filter-chip" type="button" data-filter="가성비 우선" aria-pressed="false">가성비 우선</button><button class="filter-chip" type="button" data-filter="오래 쓰는 제품" aria-pressed="false">오래 쓰는 제품</button><button class="filter-chip" type="button" data-filter="재구매 의사 있음" aria-pressed="false">재구매 의사 있음</button>
+        </div>
+        <p class="filter-status" id="filter-status" aria-live="polite"></p>
+        <div class="recent-grid" id="recent-grid">
+          <a class="review-card" href="#newsletter" data-category="주방" data-tags="2인 가구,요리를 자주 하는 집,가성비 우선" data-title="인덕션 프라이팬 매일 요리 코팅 내구성"><div class="review-image art-pan" role="img" aria-label="인덕션 프라이팬 이미지 플레이스홀더"></div><div class="review-body"><div class="review-meta"><span class="tag">주방</span><span class="tag neutral">직접 구매</span><span class="tag neutral">6개월 사용</span></div><h3>매일 요리하는 집의 프라이팬, 코팅보다 중요한 한 가지</h3><p class="review-conclusion">가볍고 잘 닦이지만, 센 불 조리는 피해야 오래 쓴다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>예열이 빠르고 가벼움</span></div><div class="cons"><b>단점</b><span>고온 사용에는 취약</span></div></div><div class="review-footer"><span class="rating"><strong>4.2</strong> / 5</span><span class="updated">2026.08.03 업데이트</span></div></div></a>
+          <a class="review-card" href="#newsletter" data-category="가구" data-tags="좁은 신혼집,2인 가구,오래 쓰는 제품" data-title="신혼집 소파 작은 거실 패브릭 관리"><div class="review-image art-sofa" role="img" aria-label="작은 거실의 소파 이미지 플레이스홀더"></div><div class="review-body"><div class="review-meta"><span class="tag">가구</span><span class="tag neutral">직접 구매</span><span class="tag neutral">11개월 사용</span></div><h3>작은 거실에 3인 소파를 들여도 괜찮았을까?</h3><p class="review-conclusion">팔걸이 폭이 좁아 보이는 것보다 거실이 넓게 남았다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>공간을 덜 차지하는 깊이</span></div><div class="cons"><b>단점</b><span>깊게 기대기엔 짧음</span></div></div><div class="review-footer"><span class="rating"><strong>4.3</strong> / 5</span><span class="updated">2026.08.02 업데이트</span></div></div></a>
+          <a class="review-card" href="#newsletter" data-category="생활" data-tags="맞벌이 부부,청소 시간을 줄이고 싶은 집,재구매 의사 있음" data-title="빨래건조대 맞벌이 부부 접이식 공간 절약"><div class="review-image art-laundry" role="img" aria-label="햇볕에 말리는 빨래건조대 이미지 플레이스홀더"></div><div class="review-body"><div class="review-meta"><span class="tag">생활</span><span class="tag neutral">직접 구매</span><span class="tag neutral">3개월 사용</span></div><h3>맞벌이 부부에게 접이식 빨래건조대가 맞았던 이유</h3><p class="review-conclusion">매일 접어 넣을 수 있어 좁은 베란다에서 가장 유용했다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>보관할 때 공간 절약</span></div><div class="cons"><b>단점</b><span>젖은 이불은 무거움</span></div></div><div class="review-footer"><span class="rating"><strong>4.1</strong> / 5</span><span class="updated">2026.07.30 업데이트</span></div></div></a>
+          <a class="review-card" href="#newsletter" data-category="숙소" data-tags="직접 예약,3박 숙박,재숙박 의사 있음" data-title="그랑벨 호텔 3박 후기 삿포로 숙소"><div class="review-image art-mattress" role="img" aria-label="삿포로 호텔 객실 이미지 플레이스홀더"></div><div class="review-body"><div class="review-meta"><span class="tag">여행 · 숙소</span><span class="tag neutral">직접 예약</span><span class="tag neutral">3박 숙박</span></div><h3>그랑벨 호텔 3박 후기, 삿포로 숙소로 다시 예약할까?</h3><p class="review-conclusion">역에서 가까운 것보다, 온천과 조식의 동선이 더 편했다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>체크인 동선이 편함</span></div><div class="cons"><b>단점</b><span>객실 수납은 부족함</span></div></div><div class="review-footer"><span class="rating"><strong>4.4</strong> / 5</span><span class="updated">2026.07.25 업데이트</span></div></div></a>
+          <a class="review-card" href="#newsletter" data-category="여행" data-tags="2인 가구,직접 다녀옴,3박4일,재방문 의사 있음" data-title="삿포로 3박4일 총경비 실제 일정"><div class="review-image art-suitcase" role="img" aria-label="삿포로 여행 기록 이미지 플레이스홀더"></div><div class="review-body"><div class="review-meta"><span class="tag">여행</span><span class="tag neutral">직접 다녀옴</span><span class="tag neutral">3박 4일</span></div><h3>삿포로 3박 4일, 둘이 쓴 총경비와 실제 일정</h3><p class="review-conclusion">렌터카 없이도 충분했지만, 하루에 욕심낸 일정은 줄여야 했다.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>교통비 포함 예산이 선명함</span></div><div class="cons"><b>단점</b><span>환승이 잦은 날은 피곤함</span></div></div><div class="review-footer"><span class="rating"><strong>4.6</strong> / 5</span><span class="updated">2026.07.18 업데이트</span></div></div></a>
+          <a class="review-card" href="#newsletter" data-category="맛집" data-tags="2인 가구,직접 방문,2인 식사,재방문 의사 있음" data-title="성수 작은 이자카야 2인 식사 재방문"><div class="review-image art-food" role="img" aria-label="직접 방문한 식당 이미지 플레이스홀더"></div><div class="review-body"><div class="review-meta"><span class="tag">맛집</span><span class="tag terracotta">직접 방문</span><span class="tag neutral">2인 식사</span></div><h3>성수의 작은 이자카야, 다시 방문할 메뉴가 있었을까?</h3><p class="review-conclusion">메뉴판보다 예약 가능 여부를 먼저 확인해야 하는 곳.</p><div class="review-pros-cons"><div class="pros"><b>장점</b><span>둘이 나눠 먹기 좋은 구성</span></div><div class="cons"><b>단점</b><span>피크타임 대기가 김</span></div></div><div class="review-footer"><span class="rating"><strong>4.2</strong> / 5</span><span class="updated">2026.07.10 업데이트</span></div></div></a>
+          <div class="no-results" id="no-results">조건에 맞는 리뷰가 아직 없어요.<br>다른 키워드로 다시 찾아보세요.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section principles-section" id="principles" aria-labelledby="principles-title">
+      <div class="container"><div class="section-heading"><div><span class="eyebrow">Our standard</span><h2 id="principles-title">이렇게 리뷰합니다</h2></div><p>생활이 바뀌는 선택일수록, 사용한 시간과 망설였던 지점을 함께 남깁니다.</p></div>
+        <div class="principles">
+          <article class="principle"><span class="principle-number">01</span><h3>직접 사용한 것만</h3><p>직접 사용하지 않은 제품은 사용 후기처럼 작성하지 않습니다.</p></article>
+          <article class="principle"><span class="principle-number">02</span><h3>단점을 숨기지 않기</h3><p>장점보다 먼저 떠오른 불편함도 구매 판단에 필요한 정보입니다.</p></article>
+          <article class="principle"><span class="principle-number">03</span><h3>가격과 기간 함께 기록</h3><p>구매 당시 가격과 실제 사용 기간을 함께 기록합니다.</p></article>
+          <article class="principle"><span class="principle-number">04</span><h3>시간이 지나면 업데이트</h3><p>처음의 설렘과 지금의 평가는 다를 수 있어 다시 평가합니다.</p></article>
+          <article class="principle"><span class="principle-number">05</span><h3>광고보다 경험 우선</h3><p>후원 여부가 아니라 실제로 살아본 시간을 기준으로 기록합니다.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
+    <div class="container"><div class="newsletter-box"><div><span class="eyebrow">Slowly, honestly</span><h2 id="newsletter-title">오래 써본 뒤 달라진 평가를 보내드려요</h2><p>새 제품 소개보다 3개월, 6개월, 1년 뒤의 실제 평가를 정리해 전달합니다.</p></div><div class="newsletter-form-wrap"><form class="newsletter-form" id="newsletter-form" novalidate><label class="sr-only" for="email">이메일 주소</label><input id="email" type="email" placeholder="이메일 주소를 입력해주세요" autocomplete="email" aria-describedby="form-message"><button class="btn" type="submit">리뷰 소식 받기</button></form><p class="form-message" id="form-message" aria-live="polite"></p></div></div></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container"><div class="footer-main"><div class="footer-brand"><a class="brand" href="#top">둘의 기준<em>OUR EVERYDAY STANDARD</em></a><p>직접 써보고, 직접 가보고,<br>우리의 선택을 기록합니다.</p></div><div class="footer-col"><h2>카테고리</h2><a href="#reviews">가전</a><a href="#reviews">가구</a><a href="#travel">여행</a><a href="#reviews">맛집</a></div><div class="footer-col"><h2>둘의 기준</h2><a href="#principles">매거진 소개</a><a href="#principles">리뷰 원칙</a><a href="mailto:hello@example.com">문의하기</a></div><div class="footer-col"><h2>안내</h2><a href="#">개인정보처리방침</a><a href="#">제휴 및 광고</a><a href="#newsletter">구독하기</a></div></div><div class="footer-bottom"><p class="disclosure">일부 글에는 제휴 링크가 포함될 수 있으며, 구매 시 일정액의 수수료를 받을 수 있습니다. 구매 가격에는 영향을 주지 않습니다.</p><span>© 2026 둘의 기준. All rights reserved.</span></div></div>
+  </footer>
+  <button class="top-btn" id="top-btn" type="button" aria-label="맨 위로 이동"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"></path></svg></button>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const header = document.getElementById('site-header');
+      const topButton = document.getElementById('top-btn');
+      const menuToggle = document.getElementById('menu-toggle');
+      const nav = document.getElementById('primary-nav');
+      const searchPanel = document.getElementById('search-panel');
+      const searchOpen = document.getElementById('search-open');
+      const searchClose = document.getElementById('search-close');
+      const searchInput = document.getElementById('search-input');
+      const searchForm = document.getElementById('search-form');
+      const searchHint = document.getElementById('search-hint');
+      const themeToggle = document.getElementById('theme-toggle');
+      const searchableCards = Array.from(document.querySelectorAll('.review-card[data-title]'));
+      const recentCards = searchableCards.filter(function (card) { return card.closest('#recent-grid'); });
+      const filterButtons = Array.from(document.querySelectorAll('.filter-chip'));
+      const filterStatus = document.getElementById('filter-status');
+      const noResults = document.getElementById('no-results');
+
+      themeToggle.addEventListener('click', function () {
+        const dark = body.dataset.theme !== 'dark';
+        body.dataset.theme = dark ? 'dark' : 'light';
+        themeToggle.setAttribute('aria-pressed', String(dark));
+        themeToggle.setAttribute('aria-label', dark ? '라이트 모드로 전환' : '다크 모드로 전환');
+      });
+
+      function setHeaderState() {
+        const isScrolled = window.scrollY > 12;
+        header.classList.toggle('scrolled', isScrolled);
+        topButton.classList.toggle('is-visible', window.scrollY > 520);
+      }
+      window.addEventListener('scroll', setHeaderState, { passive: true });
+      setHeaderState();
+
+      function closeMenu() {
+        nav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', '메뉴 열기');
+        body.classList.remove('menu-open');
+      }
+      menuToggle.addEventListener('click', function () {
+        const open = nav.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+        body.classList.toggle('menu-open', open);
+      });
+      nav.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+
+      function openSearch() {
+        searchPanel.classList.add('is-open');
+        searchPanel.setAttribute('aria-hidden', 'false');
+        searchOpen.setAttribute('aria-expanded', 'true');
+        body.classList.add('search-open');
+        window.setTimeout(function () { searchInput.focus(); }, 80);
+      }
+      function closeSearch() {
+        searchPanel.classList.remove('is-open');
+        searchPanel.setAttribute('aria-hidden', 'true');
+        searchOpen.setAttribute('aria-expanded', 'false');
+        body.classList.remove('search-open');
+        searchOpen.focus();
+      }
+      searchOpen.addEventListener('click', openSearch);
+      searchClose.addEventListener('click', closeSearch);
+      searchPanel.addEventListener('click', function (event) { if (event.target === searchPanel) closeSearch(); });
+      searchForm.addEventListener('submit', function (event) { event.preventDefault(); });
+
+      let activeSituation = '';
+      let activeCategory = '';
+      function updateCards(query, situation, category) {
+        const searchTerm = query.trim().toLowerCase();
+        let visible = 0;
+        searchableCards.forEach(function (card) {
+          const haystack = (card.dataset.title + ' ' + card.dataset.category + ' ' + card.dataset.tags).toLowerCase();
+          const matchesSearch = !searchTerm || haystack.includes(searchTerm);
+          const matchesCategory = !category || card.dataset.category === category || (category === '여행' && ['숙소', '여행지'].includes(card.dataset.category)) || (category === '생활' && card.dataset.category === '주방') || (category === '비교' && card.dataset.title.includes('vs'));
+          const matchesSituation = !situation || !card.closest('#recent-grid') || card.dataset.tags.includes(situation);
+          const show = matchesSearch && matchesCategory && matchesSituation;
+          card.classList.toggle('is-hidden', !show);
+          if (show) visible += 1;
+        });
+        noResults.classList.toggle('is-visible', visible === 0);
+        return visible;
+      }
+      searchInput.addEventListener('input', function () {
+        const count = updateCards(searchInput.value, activeSituation, activeCategory);
+        searchHint.textContent = searchInput.value ? count + '개의 리뷰가 검색되었습니다.' : '식기세척기, 좁은 집, 직접 구매처럼 검색해보세요.';
+        searchHint.style.color = searchInput.value && count === 0 ? 'var(--color-warning)' : '';
+      });
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          activeSituation = button.dataset.filter === 'all' ? '' : button.dataset.filter;
+          activeCategory = '';
+          searchInput.value = '';
+          searchHint.textContent = '식기세척기, 좁은 집, 직접 구매처럼 검색해보세요.';
+          searchHint.style.color = '';
+          filterButtons.forEach(function (item) {
+            const active = item === button;
+            item.classList.toggle('is-active', active);
+            item.setAttribute('aria-pressed', String(active));
+          });
+          updateCards(searchInput.value, activeSituation, activeCategory);
+          const recentCount = recentCards.filter(function (card) { return !card.classList.contains('is-hidden'); }).length;
+          filterStatus.textContent = activeSituation ? activeSituation + ' 조건에 맞는 리뷰 ' + recentCount + '개' : '';
+        });
+      });
+      document.querySelectorAll('[data-category-filter]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          const category = link.dataset.categoryFilter;
+          searchInput.value = '';
+          activeSituation = '';
+          activeCategory = category === 'all' ? '' : category;
+          filterButtons.forEach(function (item) { item.classList.toggle('is-active', item.dataset.filter === 'all'); item.setAttribute('aria-pressed', String(item.dataset.filter === 'all')); });
+          updateCards('', '', activeCategory);
+          filterStatus.textContent = activeCategory ? activeCategory + ' 카테고리를 살펴보세요.' : '';
+        });
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') { if (searchPanel.classList.contains('is-open')) closeSearch(); else closeMenu(); }
+      });
+      topButton.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+      const newsletterForm = document.getElementById('newsletter-form');
+      const emailInput = document.getElementById('email');
+      const formMessage = document.getElementById('form-message');
+      newsletterForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const email = emailInput.value.trim();
+        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        formMessage.className = 'form-message';
+        if (!valid) {
+          formMessage.textContent = '이메일 주소를 한 번 더 확인해주세요.';
+          formMessage.classList.add('error');
+          emailInput.setAttribute('aria-invalid', 'true');
+          emailInput.focus();
+          return;
+        }
+        formMessage.textContent = '구독 신청이 완료되었습니다. 다음 리뷰에서 만나요.';
+        formMessage.classList.add('success');
+        emailInput.removeAttribute('aria-invalid');
+        emailInput.value = '';
+      });
+    }());
+  </script>
+</body>
+</html>
