@@ -1,0 +1,46 @@
+:root {
+  --color-canvas: #faf8f4;
+  --color-surface: #ffffff;
+  --color-text: #242424;
+  --color-muted: #77736d;
+  --color-primary: #66725b;
+  --color-primary-hover: #56624d;
+  --color-border: #e8e2d9;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--color-canvas); }
+body {
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-canvas);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+
+.foundation-page { min-height: 100vh; padding: 0 32px 64px; }
+.foundation-header { display: flex; align-items: baseline; justify-content: space-between; width: min(1120px, 100%); margin: 0 auto; padding: 28px 0; border-bottom: 1px solid var(--color-border); }
+.foundation-brand { font-size: 20px; font-weight: 900; letter-spacing: -.08em; }
+.foundation-header span { color: var(--color-primary); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.foundation-hero { width: min(760px, 100%); margin: clamp(90px, 15vw, 180px) auto 0; }
+.foundation-eyebrow { margin: 0 0 18px; color: var(--color-primary); font-size: 12px; font-weight: 900; letter-spacing: .12em; }
+.foundation-hero h1 { margin: 0; font-size: clamp(2.7rem, 7vw, 5.4rem); line-height: 1.04; letter-spacing: -.09em; }
+.foundation-copy { max-width: 610px; margin: 28px 0 0; color: var(--color-muted); font-size: 17px; line-height: 1.8; }
+.foundation-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+.button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 18px; border-radius: 12px; font-size: 14px; font-weight: 800; }
+.button-primary { color: #fff; background: var(--color-primary); }
+.button-secondary { color: var(--color-primary-hover); background: #e9eee5; }
+.foundation-milestones { display: grid; grid-template-columns: repeat(3, 1fr); width: min(1120px, 100%); margin: 120px auto 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.foundation-milestones article { display: grid; gap: 5px; padding: 22px 24px; border-left: 1px solid var(--color-border); }
+.foundation-milestones article:first-child { border-left: 0; padding-left: 0; }
+.foundation-milestones strong { font-size: 18px; }
+.foundation-milestones span { color: var(--color-muted); font-size: 13px; }
+.foundation-next { width: min(1120px, 100%); margin: 24px auto 0; color: var(--color-muted); font-size: 13px; }
+@media (max-width: 640px) {
+  .foundation-page { padding: 0 20px 40px; }
+  .foundation-header span { display: none; }
+  .foundation-hero { margin-top: 88px; }
+  .foundation-milestones { grid-template-columns: 1fr; margin-top: 80px; }
+  .foundation-milestones article, .foundation-milestones article:first-child { padding: 16px 0; border-left: 0; border-top: 1px solid var(--color-border); }
+  .foundation-milestones article:first-child { border-top: 0; }
+}

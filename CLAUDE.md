@@ -73,13 +73,13 @@ Next.js 15 (App Router) + Payload CMS 3.86.x + PostgreSQL
 
 ```
 [■] 기획·설계   완료
-[□] W1 구현     미착수  ← 지금 착수
+[■] W1 기반     진행 중  ← 현재
 [□] W2 구현
 [□] W3 구현
 [□] W4 구현
 ```
 
-**서비스 구현 코드는 아직 없다.** 저장소에는 시안(`index.html`)과 문서(`docs/`)만 있다.
+**W1 기반 파일은 구성 중이다.** Payload 설정·컬렉션 스키마·검증 훅의 골격이 있으며, 의존성 설치·실제 DB 연결·fixture 시드가 남아 있다.
 
 세부 진행 상황과 다음 할 일은 → [`docs/04-progress.md`](docs/04-progress.md)
 
@@ -129,7 +129,7 @@ Next.js 15 (App Router) + Payload CMS 3.86.x + PostgreSQL
 | D-09 | `wouldRepeat`로 표현 통합 | 라벨 파생·필터 |
 | D-12 | `COMPARISON`은 v1.1로 연기 | MVP 로드맵 4주 유지 |
 
-**다음 작업은 W1 스캐폴딩과 컬렉션 스키마 구현이다.**
+**다음 작업은 의존성 설치·타입 검증과 PostgreSQL 연결이다.**
 
 ---
 
